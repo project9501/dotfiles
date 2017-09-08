@@ -37,7 +37,7 @@ for file in $FILES; do
 		continue;
 	elif [ -f ~/.$file ]; then
 		echo "Moving .$file to $BKDIR..."
-		mv ~/.$file $BKDIR/
+		mv ~/.$file $BKDIR/$file.bak.$(date +"%s")
 	fi
 	echo "Creating symlink to $file in home directory..."
 	ln -s $SOURCEDIR/$file ~/.$file
