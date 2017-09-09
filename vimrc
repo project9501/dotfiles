@@ -1,6 +1,11 @@
-" execute pathogen#infect()			" deactivated in favor of vundle
-set rtp+=~/.vim/bundle/Vundle
+" set nocompatible
+" filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
+
+" Let Vundle manage Vundle
+" Plugin 'VundleVim/Vundle.vim'
 
 " vundle packages
 Bundle 'ying17zi/vim-live-latex-preview'
@@ -9,6 +14,8 @@ Bundle 'vim-syntastic/syntastic'
 Bundle 'ervandew/supertab'
 " Bundle 'wikitopian/hardmode'		" let's not punish ourselves just yet
 Bundle 'kien/ctrlp.vim'
+
+" call vundle#end()
 
 " vim options
 syntax enable						" previously on
