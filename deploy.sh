@@ -53,7 +53,7 @@ if [ ! -L ~/.vim ]; then
 		mv -n ~/.vim $BKDIR/
 	fi
 	echo "Creating symlink to .vim in home directory..."
-	ln -s $SOURCEDIR/.vim ~/.vim
+	ln -s $SOURCEDIR/vim ~/.vim
 fi
 
 if [ ! -L ~/.config/i3 ]; then
