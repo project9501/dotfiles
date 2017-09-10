@@ -11,6 +11,7 @@ esac
 # Some env variables
 export QUOTING_STYLE='literal'
 export EDITOR=vim
+export RANGER_LOAD_DEFAULT_RC=false
 
 HISTCONTROL=ignoreboth
 HISTSIZE=1000

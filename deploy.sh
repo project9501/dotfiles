@@ -77,6 +77,15 @@ if [ ! -L ~/.config/i3 ]; then
 	ln -s $SOURCEDIR/i3 ~/.config/i3
 fi
 
+if [ ! -L ~/.config/ranger ]; then
+	if [ -d ~/.config/ranger ]; then
+		echo "Moving ~/.config/ranger to $BKDIR..."
+		mv -n ~/.config/ranger $BKDIR/
+	fi
+	echo "Creating symlink to ranger/ in .config directory..."
+	ln -s $SOURCEDIR/ranger ~/.config/ranger
+fi
+
 if [ ! -L ~/.config/polybar ]; then
 	if [ -d ~/.config/polybar ]; then
 		echo "Moving ~/.config/polybar to $BKDIR..."
