@@ -4,6 +4,7 @@
 ## Also creates a $BIN directory if none exists and moves envsync.sh
 ## there.
 ## v1.0 2017-09-07
+## v2.0 2017-09-09
 
 DEBUG=false
 
@@ -12,14 +13,25 @@ DEBUG=false
 SOURCEDIR=~/.config/dotfiles
 BKDIR=~/.config/dotfiles.orig
 #FILES=$(ls $SOURCEDIR | grep -v "\.sh")
+#FILES=('Xdefaults' 'archey3.cfg' 'bash_aliases' 'bash_logout'\
+#		'bash_profile' 'bashrc' 'profile' 'tmux.conf' 'vimrc'\
+#		'dircolorsrc')
+# Cycling through the dir automatically was a neat idea when we didn't have
+# subdirs to contend with, but things got complicated...
+
+FILES="Xdefaults archey3.cfg bash_aliases bash_logout bash_profile bashrc profile\
+	tmux.conf vimrc dircolorsrc"
 PWD=$(dirname $(readlink -f $0))
 
-source $PWD/deploy.h
+#source $PWD/deploy.h
 
-# Environment sanity
+# Debug
 
+$DEBUG && echo $FILES
 $DEBUG && echo $PWD
 $DEBUG && echo $SOURCEDIR
+
+# Environment sanity
 
 if [ $PWD != $SOURCEDIR ]; then
 	[ -d $SOURCEDIR ] || mkdir -p $SOURCEDIR

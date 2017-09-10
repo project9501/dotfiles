@@ -38,6 +38,7 @@ if [ "$color_prompt" = yes ]; then
 	else
 		PS1='[\A \[\e[1;32m\]\u\[\e[m\]@\h \[\e[1;34m\]\W\[\e[m\]]$ '
 	fi
+	eval $(dircolors -b ~/.dircolorsrc)
 else
 	PS1='[\A \u@\h: \w]# '
 fi
