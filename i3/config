@@ -7,15 +7,16 @@
 hide_edge_borders both
 for_window [class="^.*"] border pixel 0
 gaps inner 15
-gaps outer 15
-smart_gaps on
+gaps outer 0				# Adds to inner gaps
+#smart_gaps on				# gaps even with one frame
+smart_borders no_gaps		# draws borders if gaps=0
 font pango:monospace 9
 
 # Mod key Win
 set $mod Mod4
 
 # Default programs
-set $term urxvt				
+set $term urxvt
 set $browser firefox-esr	# AUR install
 #set $launcher dmenu_run		# Dmenu for now
 set $launcher rofi -show run
