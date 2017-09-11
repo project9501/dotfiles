@@ -69,5 +69,12 @@ fi
 # If a login shell, run some extra commands
 
 # shopt -q login_shell && archey3
-grep -q -e "Arch" /etc/issue && archey3
+# grep -q -e "Arch" /etc/issue && archey3
+# Bootsplash
+
+if [ -n $(command -v archey3) ]; then
+	archey3
+elif [ -n $(command -v screenfetch) ]; then
+	screenfetch
+fi
 
