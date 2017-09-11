@@ -78,3 +78,6 @@ elif [ -n "$(command -v screenfetch)" ]; then
 	screenfetch
 fi
 
+# Finally, if there's a local bashrc, source it
+
+[ -f ~/.bashrc.local ] && source ~/.bashrc.local
