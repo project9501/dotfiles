@@ -1,5 +1,5 @@
 # vim: filetype=i3
-# 
+#
 # Initial i3 config 2017-09-08
 # Drawn heavily from Luke Smith's config
 
@@ -36,14 +36,35 @@ exec --no-startup-id unclutter
 
 floating_modifier $mod
 
+# Define dropdown/scratchpad windows
+
+for_window [instance="dropdown"] floating enable
+for_window [instance="dropdown"] resize set 625 400
+for_window [instance="dropdown"] move position center
+for_window [instance="dropdown"] move scratchpad
+exec --no-startup-id $term -name dropdown -e tmux
+
+for_window [instance="math"] floating enable
+for_window [instance="math"] resize set 800 300
+for_window [instance="math"] move position center
+for_window [instance="math"] move scratchpad
+exec --no-startup-id $term -fn "xft:mono:pixelsize=24" -name math -e R -q
+
 # Basic bindings
-bindsym $mod+Return				exec $term
-bindsym $mod+Shift+Return		exec $term -e tmux
+bindsym $mod+Return			exec $term
+bindsym $mod+Shift+Return	exec $term -e tmux
+bindsym $mod+slash			split vertical ;; exec $term
+bindsym $mod+apostrophe		split horizontal ;; exec $term
 
-bindsym $mod+Shift+q kill
+# Drop-downs
+bindsym $mod+u				[instance="dropdown"] scratchpad show; move position center
+bindsym $mod+c				[instance="math"] scratchpad show; move position center
 
-bindsym $mod+d					exec $launcher
-bindsym Control+space			exec $launcher
+bindsym $mod+Shift+q		kill
+bindsym $mod+q				kill
+
+bindsym $mod+d				exec $launcher
+bindsym Control+space		exec $launcher
 
 # Change these to be vimlike
 bindsym $mod+h				focus left
@@ -69,7 +90,10 @@ bindsym $mod+Shift+i		resize grow height 10px or 10ppt
 bindsym $mod+Shift+o		resize grow width 10px or 10ppt
 
 bindsym $mod+t				split toggle
-bindsym $mod+Shift+t		gaps inner current set 15; gaps outer current set 15
+bindsym $mod+Shift+t		gaps inner current set 15; gaps outer current set 0
+
+bindsym Alt+Tab				workspace next
+bindsym Alt+Shift+tab		workspace prev
 
 # Volume controls
 # PULSEAUDIO/PAMIXER aliases

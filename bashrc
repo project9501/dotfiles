@@ -72,9 +72,9 @@ fi
 # grep -q -e "Arch" /etc/issue && archey3
 # Bootsplash
 
-if [ -n $(command -v archey3) ]; then
+if [ -n "$(command -v archey3)" ]; then
 	archey3
-elif [ -n $(command -v screenfetch) ]; then
+elif [ -n "$(command -v screenfetch)" ]; then
 	screenfetch
 fi
 
