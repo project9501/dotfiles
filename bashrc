@@ -68,5 +68,6 @@ fi
 
 # If a login shell, run some extra commands
 
-shopt -q login_shell && archey3
+# shopt -q login_shell && archey3
+grep -q -e "Arch" /etc/issue && archey3
 

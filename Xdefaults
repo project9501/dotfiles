@@ -1,5 +1,5 @@
-*foreground: #dddddd
-*foreground_bold: #ffffff
+*foreground: #ffbf00
+*foreground_bold: #ffff00
 *cursor: #ffff00
 !!background      = #1b1918
 !!*background: rgba(0, 0, 0, .7)
