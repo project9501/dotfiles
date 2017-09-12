@@ -20,6 +20,7 @@ set $term urxvt
 set $browser firefox-esr	# AUR install
 #set $launcher dmenu_run		# Dmenu for now
 set $launcher rofi -show run
+set $lock ~/.config/i3/scripts/lock.sh
 
 ## External Startup Scripts
 # Composite manager
@@ -38,11 +39,17 @@ floating_modifier $mod
 
 # Define dropdown/scratchpad windows
 
-for_window [instance="dropdown"] floating enable
-for_window [instance="dropdown"] resize set 625 400
-for_window [instance="dropdown"] move position center
-for_window [instance="dropdown"] move scratchpad
-exec --no-startup-id $term -name dropdown -e tmux
+for_window [instance="tpad"] floating enable
+for_window [instance="tpad"] resize set 625 400
+for_window [instance="tpad"] move position center
+for_window [instance="tpad"] move scratchpad
+exec --no-startup-id $term -name tpad -e tmux
+
+# for_window [title="dropdown"] floating enable
+# for_window [title="dropdown"] resize set 625 400
+# for_window [title="dropdown"] move position center
+# for_window [title="dropdown"] move scratchpad
+# exec --no-startup-id $term -name dropdown -e tmux
 
 for_window [instance="math"] floating enable
 for_window [instance="math"] resize set 800 300
@@ -57,13 +64,13 @@ bindsym $mod+slash			split vertical ;; exec $term
 bindsym $mod+apostrophe		split horizontal ;; exec $term
 
 # Drop-downs
-bindsym $mod+u				[instance="dropdown"] scratchpad show; move position center
+bindsym $mod+u				[instance="tpad"] scratchpad show; move position center
 bindsym $mod+c				[instance="math"] scratchpad show; move position center
 
 bindsym $mod+Shift+q		kill
 bindsym $mod+q				kill
 
-bindsym $mod+d				exec $launcher
+#bindsym $mod+d				exec $launcher
 bindsym Control+space		exec $launcher
 
 # Change these to be vimlike
@@ -92,8 +99,8 @@ bindsym $mod+Shift+o		resize grow width 10px or 10ppt
 bindsym $mod+t				split toggle
 bindsym $mod+Shift+t		gaps inner current set 15; gaps outer current set 0
 
-bindsym Mod1+Tab				workspace next
-bindsym Mod1+Shift+tab		workspace prev
+bindsym Mod1+Tab			workspace next
+bindsym Mod1+Shift+Tab		workspace prev
 
 # Volume controls
 # PULSEAUDIO/PAMIXER aliases
@@ -190,23 +197,26 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-mode "exit" {
+mode "session" {
 	# These bindings trigger upon entering exit mode
 	# First, backing out
 	bindsym Return			mode "default"
 	bindsym Escape			mode "default"
 
 	# Lock screen
-	bindsym l				exec ~/.config/i3/scripts/lock.sh; mode "default"
+	bindsym l				exec $lock; mode "default"
 
 	# Suspend
-	bindsym s				exec systemctl suspend; mode "default"
+	bindsym s				exec $lock; exec systemctl suspend; mode "default"
 
 	# Halt
 	bindsym h				exec systemctl halt; mode "default"
 
 	# Logout
 	bindsym q				exec i3-msg exit; mode "default"
+
+	# Reboot
+	bindsym b				exec systemctl reboot; mode "default"
 
 	# Reload
 	bindsym c				reload; mode "default"
@@ -215,7 +225,21 @@ mode "exit" {
 	bindsym r				restart; mode "default"
 }
 
-bindsym $mod+x				mode "exit"
+bindsym $mod+x				mode "session"
+
+mode "launch" {
+	# These bindings provide one-button launches of
+	# frequently-used programs.
+	# First, backing out
+	bindsym Return			mode "default"
+	bindsym Escape			mode "default"
+
+	# Browser
+	bindsym w				exec $browser; mode "default"
+	bindsym Shift+w			exec firefox-esr --no-remote -P; mode "default"
+}
+
+bindsym F6					mode "launch"
 
 #bar {
 #        status_command i3status
