@@ -7,6 +7,8 @@ case $- in
 		  *) return;;
 esac
 
+# Sync git repo
+git pull ~/.config/dotfiles >/dev/null 2>&1
 
 # Some env variables
 export QUOTING_STYLE='literal'
